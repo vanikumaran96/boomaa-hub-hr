@@ -43,6 +43,8 @@ export interface PayrollSummary {
   totalDays: number;
   presentDays: number;
   leaveDays: number;
+  paidLeaves: number;
+  unpaidLeaves: number;
   absentDays: number;
   weeklyOffs: number;
   naDays: number;

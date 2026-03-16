@@ -28,7 +28,9 @@ const Payroll = () => {
         const counts = { P: 0, L: 0, WO: 0, NA: 0, A: 0 };
         attendance.forEach((r) => counts[r.status]++);
         const totalDays = attendance.length;
-        const payableDays = counts.P + counts.WO;
+        const paidLeaves = Math.min(counts.L, 1);
+        const unpaidLeaves = Math.max(counts.L - 1, 0);
+        const payableDays = counts.P + counts.WO + counts.NA + paidLeaves;
         const dailyRate = emp.salary / totalDays;
         const netPayable = Math.round(dailyRate * payableDays);
 
@@ -41,6 +43,8 @@ const Payroll = () => {
           totalDays,
           presentDays: counts.P,
           leaveDays: counts.L,
+          paidLeaves,
+          unpaidLeaves,
           absentDays: counts.A,
           weeklyOffs: counts.WO,
           naDays: counts.NA,
@@ -92,11 +96,13 @@ const Payroll = () => {
       head: [["Attendance Summary", "Days"]],
       body: [
         ["Total Days", String(record.totalDays)],
-        ["Present", String(record.presentDays)],
-        ["Leave", String(record.leaveDays)],
-        ["Absent", String(record.absentDays)],
-        ["Weekly Off", String(record.weeklyOffs)],
-        ["N/A", String(record.naDays)],
+        ["Present (Paid)", String(record.presentDays)],
+        ["Weekly Off (Paid)", String(record.weeklyOffs)],
+        ["N/A (Paid)", String(record.naDays)],
+        ["Leave (Total)", String(record.leaveDays)],
+        ["  Paid Leave (1 free/month)", String(record.paidLeaves)],
+        ["  Unpaid Leave", String(record.unpaidLeaves)],
+        ["Absent (Unpaid)", String(record.absentDays)],
         ["Total Payable Days", String(record.payableDays)],
       ],
       theme: "grid",
@@ -175,10 +181,11 @@ const Payroll = () => {
                     <TableHead>ID</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Branch</TableHead>
-                    <TableHead className="text-center">Present</TableHead>
-                    <TableHead className="text-center">Leave</TableHead>
-                    <TableHead className="text-center">Absent</TableHead>
+                    <TableHead className="text-center">P</TableHead>
                     <TableHead className="text-center">WO</TableHead>
+                    <TableHead className="text-center">NA</TableHead>
+                    <TableHead className="text-center">L (Paid/Unpaid)</TableHead>
+                    <TableHead className="text-center">A</TableHead>
                     <TableHead className="text-center">Payable Days</TableHead>
                     <TableHead className="text-right">Net Pay</TableHead>
                     <TableHead className="text-right">Payslip</TableHead>
@@ -191,9 +198,10 @@ const Payroll = () => {
                       <TableCell className="font-medium">{record.employeeName}</TableCell>
                       <TableCell className="text-muted-foreground">{record.branch}</TableCell>
                       <TableCell className="text-center">{record.presentDays}</TableCell>
-                      <TableCell className="text-center">{record.leaveDays}</TableCell>
-                      <TableCell className="text-center">{record.absentDays}</TableCell>
                       <TableCell className="text-center">{record.weeklyOffs}</TableCell>
+                      <TableCell className="text-center">{record.naDays}</TableCell>
+                      <TableCell className="text-center">{record.paidLeaves}/{record.unpaidLeaves}</TableCell>
+                      <TableCell className="text-center">{record.absentDays}</TableCell>
                       <TableCell className="text-center font-semibold">{record.payableDays}</TableCell>
                       <TableCell className="text-right font-semibold">₹{record.netPayable.toLocaleString()}</TableCell>
                       <TableCell className="text-right">
