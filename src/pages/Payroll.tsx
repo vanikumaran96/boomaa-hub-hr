@@ -28,7 +28,9 @@ const Payroll = () => {
         const counts = { P: 0, L: 0, WO: 0, NA: 0, A: 0 };
         attendance.forEach((r) => counts[r.status]++);
         const totalDays = attendance.length;
-        const payableDays = counts.P + counts.WO;
+        const paidLeaves = Math.min(counts.L, 1);
+        const unpaidLeaves = Math.max(counts.L - 1, 0);
+        const payableDays = counts.P + counts.WO + counts.NA + paidLeaves;
         const dailyRate = emp.salary / totalDays;
         const netPayable = Math.round(dailyRate * payableDays);
 
