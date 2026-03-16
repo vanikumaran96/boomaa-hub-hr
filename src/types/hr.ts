@@ -22,16 +22,41 @@ export interface AttendanceRecord {
   status: "P" | "L" | "WO" | "NA" | "A";
 }
 
+export interface Client {
+  id: string;
+  name: string;
+  contactPerson: string;
+  email: string;
+  phone: string;
+  feeType: "percentage" | "flat";
+  feeValue: number;
+  invoiceStatus: "paid" | "pending" | "overdue";
+}
+
 export interface Candidate {
   id: string;
   name: string;
   email: string;
   phone: string;
   position: string;
-  client: string;
+  clientId: string;
+  assignedRecruiterId: string;
   stage: "sourced" | "interview" | "placed";
   appliedDate: string;
   notes: string;
+}
+
+export interface PlacementRecord {
+  id: string;
+  candidateId: string;
+  candidateName: string;
+  clientId: string;
+  clientName: string;
+  recruiterId: string;
+  recruiterName: string;
+  placementDate: string;
+  expectedFee: number;
+  billingStatus: "paid" | "pending" | "overdue";
 }
 
 export interface PayrollSummary {
