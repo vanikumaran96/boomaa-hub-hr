@@ -1,7 +1,7 @@
 import { AppLayout } from "@/components/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, CalendarDays, Wallet, UserSearch, TrendingUp, Building2 } from "lucide-react";
-import { sampleEmployees, sampleCandidates, BRANCHES } from "@/data/sampleData";
+import { sampleEmployees, sampleCandidates, sampleClients, BRANCHES } from "@/data/sampleData";
 
 const Dashboard = () => {
   const totalEmployees = sampleEmployees.length;
