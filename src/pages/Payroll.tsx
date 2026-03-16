@@ -181,10 +181,11 @@ const Payroll = () => {
                     <TableHead>ID</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Branch</TableHead>
-                    <TableHead className="text-center">Present</TableHead>
-                    <TableHead className="text-center">Leave</TableHead>
-                    <TableHead className="text-center">Absent</TableHead>
+                    <TableHead className="text-center">P</TableHead>
                     <TableHead className="text-center">WO</TableHead>
+                    <TableHead className="text-center">NA</TableHead>
+                    <TableHead className="text-center">L (Paid/Unpaid)</TableHead>
+                    <TableHead className="text-center">A</TableHead>
                     <TableHead className="text-center">Payable Days</TableHead>
                     <TableHead className="text-right">Net Pay</TableHead>
                     <TableHead className="text-right">Payslip</TableHead>
