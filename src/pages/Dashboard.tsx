@@ -1,7 +1,7 @@
 import { AppLayout } from "@/components/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, CalendarDays, Wallet, UserSearch, TrendingUp, Building2 } from "lucide-react";
-import { sampleEmployees, sampleCandidates, BRANCHES } from "@/data/sampleData";
+import { sampleEmployees, sampleCandidates, sampleClients, BRANCHES } from "@/data/sampleData";
 
 const Dashboard = () => {
   const totalEmployees = sampleEmployees.length;
@@ -84,7 +84,7 @@ const Dashboard = () => {
                   <div key={candidate.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                     <div>
                       <p className="text-sm font-medium text-foreground">{candidate.name}</p>
-                      <p className="text-xs text-muted-foreground">{candidate.position} • {candidate.client}</p>
+                      <p className="text-xs text-muted-foreground">{candidate.position} • {sampleClients.find(c => c.id === candidate.clientId)?.name ?? "N/A"}</p>
                     </div>
                     <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                       candidate.stage === "placed"
