@@ -198,9 +198,10 @@ const Payroll = () => {
                       <TableCell className="font-medium">{record.employeeName}</TableCell>
                       <TableCell className="text-muted-foreground">{record.branch}</TableCell>
                       <TableCell className="text-center">{record.presentDays}</TableCell>
-                      <TableCell className="text-center">{record.leaveDays}</TableCell>
-                      <TableCell className="text-center">{record.absentDays}</TableCell>
                       <TableCell className="text-center">{record.weeklyOffs}</TableCell>
+                      <TableCell className="text-center">{record.naDays}</TableCell>
+                      <TableCell className="text-center">{record.paidLeaves}/{record.unpaidLeaves}</TableCell>
+                      <TableCell className="text-center">{record.absentDays}</TableCell>
                       <TableCell className="text-center font-semibold">{record.payableDays}</TableCell>
                       <TableCell className="text-right font-semibold">₹{record.netPayable.toLocaleString()}</TableCell>
                       <TableCell className="text-right">
