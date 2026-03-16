@@ -43,6 +43,8 @@ const Payroll = () => {
           totalDays,
           presentDays: counts.P,
           leaveDays: counts.L,
+          paidLeaves,
+          unpaidLeaves,
           absentDays: counts.A,
           weeklyOffs: counts.WO,
           naDays: counts.NA,
