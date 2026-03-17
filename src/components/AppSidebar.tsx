@@ -5,6 +5,7 @@ import {
   CalendarDays,
   Wallet,
   UserSearch,
+  Briefcase,
   LogOut,
   Building2,
   ChevronLeft,
