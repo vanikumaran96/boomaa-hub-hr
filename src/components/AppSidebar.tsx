@@ -31,6 +31,7 @@ const menuItems = [
   { title: "Attendance", url: "/attendance", icon: CalendarDays },
   { title: "Payroll", url: "/payroll", icon: Wallet },
   { title: "Recruitment", url: "/recruitment", icon: UserSearch },
+  { title: "Clients", url: "/clients", icon: Briefcase },
 ];
 
 export function AppSidebar() {
