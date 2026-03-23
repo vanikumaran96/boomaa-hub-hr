@@ -128,8 +128,20 @@ const Payroll = () => {
 
     doc.save(`Payslip_${emp.id}_${MONTHS[record.month]}_${record.year}.pdf`);
   };
-
   const totalPayable = payrollData.reduce((sum, r) => sum + r.netPayable, 0);
+
+  const downloadCSV = () => {
+    const headers = ["ID","Name","Branch","Present","Weekly Off","NA","Paid Leave","Unpaid Leave","Absent","Payable Days","Gross Salary","Net Pay"];
+    const rows = payrollData.map(r => [r.employeeId,r.employeeName,r.branch,r.presentDays,r.weeklyOffs,r.naDays,r.paidLeaves,r.unpaidLeaves,r.absentDays,r.payableDays,r.grossSalary,r.netPayable]);
+    const csv = [headers, ...rows].map(row => row.map(v => `"${v}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Payroll_${MONTHS[month]}_${year}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <AppLayout title="Payroll">
