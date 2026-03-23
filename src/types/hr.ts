@@ -13,6 +13,11 @@ export interface Employee {
   ifsc: string;
   pan: string;
   uan: string;
+  dob?: string;
+  bloodGroup?: string;
+  status?: "Working" | "Left";
+  workMode?: "On Site" | "WFH";
+  ctc?: string;
 }
 
 export interface AttendanceRecord {
