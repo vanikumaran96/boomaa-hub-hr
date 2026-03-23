@@ -83,17 +83,17 @@ export function generateAttendance(employeeId: string, year: number, month: numb
 }
 
 export const sampleCandidates: Candidate[] = [
-  { id: "CAN001", name: "Rahul Mehta", email: "rahul.m@email.com", phone: "9001234567", position: "Software Developer", clientId: "CLI001", assignedRecruiterId: "EMP002", stage: "sourced", appliedDate: "2024-03-01", notes: "5 years exp in Java" },
-  { id: "CAN002", name: "Divya Krishnan", email: "divya.k@email.com", phone: "9001234568", position: "HR Executive", clientId: "CLI002", assignedRecruiterId: "EMP005", stage: "interview", appliedDate: "2024-02-20", notes: "Good communication skills" },
-  { id: "CAN003", name: "Arjun Nair", email: "arjun.n@email.com", phone: "9001234569", position: "Data Analyst", clientId: "CLI003", assignedRecruiterId: "EMP002", stage: "placed", appliedDate: "2024-01-15", notes: "Python, SQL expert" },
-  { id: "CAN004", name: "Shalini Gupta", email: "shalini.g@email.com", phone: "9001234570", position: "Project Manager", clientId: "CLI004", assignedRecruiterId: "EMP005", stage: "sourced", appliedDate: "2024-03-05", notes: "PMP certified" },
-  { id: "CAN005", name: "Manoj Verma", email: "manoj.v@email.com", phone: "9001234571", position: "UI/UX Designer", clientId: "CLI005", assignedRecruiterId: "EMP002", stage: "interview", appliedDate: "2024-02-28", notes: "Strong portfolio" },
-  { id: "CAN006", name: "Pooja Rao", email: "pooja.r@email.com", phone: "9001234572", position: "DevOps Engineer", clientId: "CLI006", assignedRecruiterId: "EMP005", stage: "sourced", appliedDate: "2024-03-08", notes: "AWS certified" },
-  { id: "CAN007", name: "Suresh Iyer", email: "suresh.i@email.com", phone: "9001234573", position: "Business Analyst", clientId: "CLI007", assignedRecruiterId: "EMP002", stage: "placed", appliedDate: "2024-01-25", notes: "6 years BA experience" },
-  { id: "CAN008", name: "Kavitha Raman", email: "kavitha.r@email.com", phone: "9001234574", position: "QA Engineer", clientId: "CLI008", assignedRecruiterId: "EMP005", stage: "interview", appliedDate: "2024-03-02", notes: "Selenium, JIRA expertise" },
+  { id: "CAN001", name: "Rahul Mehta", email: "rahul.m@email.com", phone: "9001234567", position: "Software Developer", clientId: "CLI001", assignedRecruiterId: "BC01", stage: "sourced", appliedDate: "2024-03-01", notes: "5 years exp in Java" },
+  { id: "CAN002", name: "Divya Krishnan", email: "divya.k@email.com", phone: "9001234568", position: "HR Executive", clientId: "CLI002", assignedRecruiterId: "BC03", stage: "interview", appliedDate: "2024-02-20", notes: "Good communication skills" },
+  { id: "CAN003", name: "Arjun Nair", email: "arjun.n@email.com", phone: "9001234569", position: "Data Analyst", clientId: "CLI003", assignedRecruiterId: "BC01", stage: "placed", appliedDate: "2024-01-15", notes: "Python, SQL expert" },
+  { id: "CAN004", name: "Shalini Gupta", email: "shalini.g@email.com", phone: "9001234570", position: "Project Manager", clientId: "CLI004", assignedRecruiterId: "BC03", stage: "sourced", appliedDate: "2024-03-05", notes: "PMP certified" },
+  { id: "CAN005", name: "Manoj Verma", email: "manoj.v@email.com", phone: "9001234571", position: "UI/UX Designer", clientId: "CLI005", assignedRecruiterId: "BC01", stage: "interview", appliedDate: "2024-02-28", notes: "Strong portfolio" },
+  { id: "CAN006", name: "Pooja Rao", email: "pooja.r@email.com", phone: "9001234572", position: "DevOps Engineer", clientId: "CLI006", assignedRecruiterId: "BC03", stage: "sourced", appliedDate: "2024-03-08", notes: "AWS certified" },
+  { id: "CAN007", name: "Suresh Iyer", email: "suresh.i@email.com", phone: "9001234573", position: "Business Analyst", clientId: "CLI007", assignedRecruiterId: "BC01", stage: "placed", appliedDate: "2024-01-25", notes: "6 years BA experience" },
+  { id: "CAN008", name: "Kavitha Raman", email: "kavitha.r@email.com", phone: "9001234574", position: "QA Engineer", clientId: "CLI008", assignedRecruiterId: "BC03", stage: "interview", appliedDate: "2024-03-02", notes: "Selenium, JIRA expertise" },
 ];
 
 export const samplePlacements: PlacementRecord[] = [
-  { id: "PLC001", candidateId: "CAN003", candidateName: "Arjun Nair", clientId: "CLI003", clientName: "Wipro", recruiterId: "EMP002", recruiterName: "Priya Sharma", placementDate: "2024-02-10", expectedFee: 50000, billingStatus: "paid" },
-  { id: "PLC002", candidateId: "CAN007", candidateName: "Suresh Iyer", clientId: "CLI007", clientName: "Deloitte", recruiterId: "EMP002", recruiterName: "Priya Sharma", placementDate: "2024-02-20", expectedFee: 100000, billingStatus: "paid" },
+  { id: "PLC001", candidateId: "CAN003", candidateName: "Arjun Nair", clientId: "CLI003", clientName: "Wipro", recruiterId: "BC01", recruiterName: "Durga Devi", placementDate: "2024-02-10", expectedFee: 50000, billingStatus: "paid" },
+  { id: "PLC002", candidateId: "CAN007", candidateName: "Suresh Iyer", clientId: "CLI007", clientName: "Deloitte", recruiterId: "BC01", recruiterName: "Durga Devi", placementDate: "2024-02-20", expectedFee: 100000, billingStatus: "paid" },
 ];
