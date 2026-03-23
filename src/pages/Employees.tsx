@@ -14,7 +14,7 @@ import type { Employee } from "@/types/hr";
 const Employees = () => {
   const [search, setSearch] = useState("");
   const [branchFilter, setBranchFilter] = useState<string>("all");
-  const [statusFilter, setStatusFilter] = useState<string>("Working");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
 
   const filtered = sampleEmployees.filter((emp) => {
