@@ -165,7 +165,10 @@ const Payroll = () => {
                 ))}
               </SelectContent>
             </Select>
-          </div>
+          <Button variant="outline" size="sm" onClick={downloadCSV}>
+            <FileDown className="h-4 w-4 mr-1" /> Download CSV
+          </Button>
+        </div>
           <Card className="shadow-card">
             <CardContent className="p-4 flex items-center gap-3">
               <div className="p-2 rounded-lg bg-primary/10">
