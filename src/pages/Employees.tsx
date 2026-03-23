@@ -14,6 +14,7 @@ import type { Employee } from "@/types/hr";
 const Employees = () => {
   const [search, setSearch] = useState("");
   const [branchFilter, setBranchFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<string>("Working");
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
 
   const filtered = sampleEmployees.filter((emp) => {
@@ -22,7 +23,8 @@ const Employees = () => {
       emp.id.toLowerCase().includes(search.toLowerCase()) ||
       emp.designation.toLowerCase().includes(search.toLowerCase());
     const matchBranch = branchFilter === "all" || emp.branch === branchFilter;
-    return matchSearch && matchBranch;
+    const matchStatus = statusFilter === "all" || emp.status === statusFilter;
+    return matchSearch && matchBranch && matchStatus;
   });
 
   return (
@@ -44,6 +46,16 @@ const Employees = () => {
               ))}
             </SelectContent>
           </Select>
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger className="w-full sm:w-40">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Status</SelectItem>
+              <SelectItem value="Working">Working</SelectItem>
+              <SelectItem value="Left">Left</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <Card className="shadow-card">
@@ -63,7 +75,9 @@ const Employees = () => {
                     <TableHead>Name</TableHead>
                     <TableHead>Designation</TableHead>
                     <TableHead>Branch</TableHead>
-                    <TableHead>Department</TableHead>
+                    <TableHead>Work Mode</TableHead>
+                    <TableHead>CTC</TableHead>
+                    <TableHead>Status</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -74,7 +88,13 @@ const Employees = () => {
                       <TableCell className="font-medium">{emp.name}</TableCell>
                       <TableCell>{emp.designation}</TableCell>
                       <TableCell><Badge variant="secondary">{emp.branch}</Badge></TableCell>
-                      <TableCell className="text-muted-foreground">{emp.department}</TableCell>
+                      <TableCell className="text-muted-foreground">{emp.workMode || "—"}</TableCell>
+                      <TableCell className="font-medium">{emp.ctc || "—"}</TableCell>
+                      <TableCell>
+                        <Badge variant={emp.status === "Working" ? "default" : "destructive"}>
+                          {emp.status || "—"}
+                        </Badge>
+                      </TableCell>
                       <TableCell className="text-right">
                         <Dialog>
                           <DialogTrigger asChild>
@@ -91,18 +111,27 @@ const Employees = () => {
                               <div><p className="text-muted-foreground">Designation</p><p className="font-medium">{emp.designation}</p></div>
                               <div><p className="text-muted-foreground">Department</p><p className="font-medium">{emp.department}</p></div>
                               <div><p className="text-muted-foreground">Branch</p><p className="font-medium">{emp.branch}</p></div>
-                              <div><p className="text-muted-foreground">Email</p><p className="font-medium">{emp.email}</p></div>
-                              <div><p className="text-muted-foreground">Phone</p><p className="font-medium">{emp.phone}</p></div>
+                              <div><p className="text-muted-foreground">Email</p><p className="font-medium break-all">{emp.email || "—"}</p></div>
+                              <div><p className="text-muted-foreground">Phone</p><p className="font-medium">{emp.phone || "—"}</p></div>
                               <div><p className="text-muted-foreground">Joining Date</p><p className="font-medium">{emp.joiningDate}</p></div>
-                              <div><p className="text-muted-foreground">Salary</p><p className="font-medium">₹{emp.salary.toLocaleString()}</p></div>
+                              <div><p className="text-muted-foreground">CTC</p><p className="font-medium">{emp.ctc || "—"}</p></div>
+                              <div><p className="text-muted-foreground">Monthly Salary</p><p className="font-medium">₹{emp.salary.toLocaleString()}</p></div>
+                              <div><p className="text-muted-foreground">Work Mode</p><p className="font-medium">{emp.workMode || "—"}</p></div>
+                              <div><p className="text-muted-foreground">DOB</p><p className="font-medium">{emp.dob || "—"}</p></div>
+                              <div><p className="text-muted-foreground">Blood Group</p><p className="font-medium">{emp.bloodGroup || "—"}</p></div>
+                              <div><p className="text-muted-foreground">Status</p>
+                                <Badge variant={emp.status === "Working" ? "default" : "destructive"}>
+                                  {emp.status || "—"}
+                                </Badge>
+                              </div>
                               <div className="col-span-2 border-t pt-3 mt-2">
                                 <p className="font-semibold text-foreground mb-2">Bank & Statutory Details</p>
                               </div>
-                              <div><p className="text-muted-foreground">Bank</p><p className="font-medium">{emp.bankName}</p></div>
-                              <div><p className="text-muted-foreground">Account No.</p><p className="font-medium font-mono">{emp.accountNumber}</p></div>
-                              <div><p className="text-muted-foreground">IFSC</p><p className="font-medium font-mono">{emp.ifsc}</p></div>
-                              <div><p className="text-muted-foreground">PAN</p><p className="font-medium font-mono">{emp.pan}</p></div>
-                              <div className="col-span-2"><p className="text-muted-foreground">UAN</p><p className="font-medium font-mono">{emp.uan}</p></div>
+                              <div><p className="text-muted-foreground">Bank</p><p className="font-medium">{emp.bankName || "—"}</p></div>
+                              <div><p className="text-muted-foreground">Account No.</p><p className="font-medium font-mono">{emp.accountNumber || "—"}</p></div>
+                              <div><p className="text-muted-foreground">IFSC</p><p className="font-medium font-mono">{emp.ifsc || "—"}</p></div>
+                              <div><p className="text-muted-foreground">PAN</p><p className="font-medium font-mono">{emp.pan || "—"}</p></div>
+                              <div className="col-span-2"><p className="text-muted-foreground">UAN</p><p className="font-medium font-mono">{emp.uan || "—"}</p></div>
                             </div>
                           </DialogContent>
                         </Dialog>
@@ -111,7 +140,7 @@ const Employees = () => {
                   ))}
                   {filtered.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                         No employees found matching your criteria.
                       </TableCell>
                     </TableRow>
