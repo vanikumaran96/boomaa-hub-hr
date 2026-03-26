@@ -34,6 +34,7 @@ const menuItems = [
   { title: "Payroll", url: "/payroll", icon: Wallet },
   { title: "Recruitment", url: "/recruitment", icon: UserSearch },
   { title: "Clients", url: "/clients", icon: Briefcase },
+  { title: "Invoices", url: "/invoices", icon: FileText },
 ];
 
 export function AppSidebar() {
