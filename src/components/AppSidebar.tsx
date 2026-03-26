@@ -10,7 +10,6 @@ import {
   Building2,
   ChevronLeft,
   FileText,
-  ChevronLeft,
 } from "lucide-react";
 import {
   Sidebar,
