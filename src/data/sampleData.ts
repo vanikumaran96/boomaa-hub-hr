@@ -110,3 +110,17 @@ export const samplePlacements: PlacementRecord[] = [
   { id: "PLC001", candidateId: "CAN003", candidateName: "Arjun Nair", clientId: "CLI003", clientName: "Wipro", recruiterId: "BC01", recruiterName: "Durga Devi", placementDate: "2024-02-10", expectedFee: 50000, billingStatus: "paid" },
   { id: "PLC002", candidateId: "CAN007", candidateName: "Suresh Iyer", clientId: "CLI007", clientName: "Deloitte", recruiterId: "BC01", recruiterName: "Durga Devi", placementDate: "2024-02-20", expectedFee: 100000, billingStatus: "paid" },
 ];
+
+export const sampleInvoices: Invoice[] = [
+  { id: "INV-FEB-001", candidateName: "Kavya", joiningDate: "2026-02-03", designation: "Telecaller", packageAmount: 180000, invoiceAmount: 12744, client: "Komali", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-002", candidateName: "Vishwas", joiningDate: "2026-02-13", designation: "Project Manager", packageAmount: 900000, invoiceAmount: 88465, client: "KNS", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-003", candidateName: "Krafil Kadam", joiningDate: "2025-11-27", designation: "Sales Executive", packageAmount: 300000, invoiceAmount: 8260, client: "Client", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-004", candidateName: "Gokul Rajendran", joiningDate: "2025-12-12", designation: "Nippon", packageAmount: 0, invoiceAmount: 11800, client: "Nippon", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-005", candidateName: "Suman Shree", joiningDate: "2026-02-13", designation: "Telecaller", packageAmount: 240000, invoiceAmount: 21657, client: "Bluelite", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-006", candidateName: "Archi Jain", joiningDate: "2026-02-09", designation: "Accountant", packageAmount: 300000, invoiceAmount: 24780, client: "Chairman Estate", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-007", candidateName: "Elavarsan S", joiningDate: "2026-02-02", designation: "Executive Accounts", packageAmount: 348060, invoiceAmount: 34212, client: "Agro", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-008", candidateName: "Soundaryakumar", joiningDate: "2026-02-09", designation: "HR Senior Executive", packageAmount: 504060, invoiceAmount: 49546, client: "Agro", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-009", candidateName: "Sanjiv Kumar", joiningDate: "2026-02-12", designation: "Digital Marketing", packageAmount: 252000, invoiceAmount: 24771, client: "Cutibless", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-010", candidateName: "Deepthi Shetty", joiningDate: "2025-12-15", designation: "Telecaller", packageAmount: 216000, invoiceAmount: 21232, client: "Beast Drive", status: "active", month: "February", year: 2026 },
+  { id: "INV-FEB-011", candidateName: "Varsha", joiningDate: "2026-02-19", designation: "Telecaller", packageAmount: 144000, invoiceAmount: 6797, client: "RK Insurance", status: "left", month: "February", year: 2026 },
+];
