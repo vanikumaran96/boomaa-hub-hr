@@ -64,6 +64,19 @@ export interface PlacementRecord {
   billingStatus: "paid" | "pending" | "overdue";
 }
 
+export interface Invoice {
+  id: string;
+  candidateName: string;
+  joiningDate: string;
+  designation: string;
+  packageAmount: number;
+  invoiceAmount: number;
+  client: string;
+  status: "active" | "left";
+  month: string;
+  year: number;
+}
+
 export interface PayrollSummary {
   employeeId: string;
   employeeName: string;

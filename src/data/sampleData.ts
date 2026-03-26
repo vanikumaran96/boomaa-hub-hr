@@ -1,4 +1,4 @@
-import { type Employee, type AttendanceRecord, type Candidate, type Client, type PlacementRecord } from "@/types/hr";
+import { type Employee, type AttendanceRecord, type Candidate, type Client, type PlacementRecord, type Invoice } from "@/types/hr";
 
 export const BRANCHES = ["Chennai", "Hyderabad", "Bangalore", "Noida", "Gurgaon", "Mumbai", "Pune", "NCR"] as const;
 
