@@ -10,6 +10,7 @@ import Attendance from "./pages/Attendance";
 import Payroll from "./pages/Payroll";
 import Recruitment from "./pages/Recruitment";
 import Clients from "./pages/Clients";
+import Invoices from "./pages/Invoices";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/payroll" element={<Payroll />} />
           <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/clients" element={<Clients />} />
+          <Route path="/invoices" element={<Invoices />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
