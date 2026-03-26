@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/button";
 import { FileDown, Wallet } from "lucide-react";
 import { sampleEmployees, generateAttendance, BRANCHES } from "@/data/sampleData";
 import type { PayrollSummary } from "@/types/hr";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import { generatePayslipDocx } from "@/utils/generatePayslipDocx";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
