@@ -45,7 +45,7 @@ const Invoices = () => {
             <CardContent className="p-5 flex items-start justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Total Amount</p>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mt-1 break-all">₹{totalInvoiceAmount.toLocaleString("en-IN")}</p>
+                <p className="text-lg sm:text-xl font-bold text-foreground mt-1">₹{totalInvoiceAmount.toLocaleString("en-IN")}</p>
               </div>
               <div className="p-2.5 rounded-lg bg-success/10">
                 <IndianRupee className="h-5 w-5 text-success" />
