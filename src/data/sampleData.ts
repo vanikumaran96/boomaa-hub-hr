@@ -66,7 +66,35 @@ export const sampleEmployees: Employee[] = [
   { id: "BC31", name: "Kavya PR", email: "", phone: "", designation: "CRM/HR", department: "Human Resources", branch: "Bangalore", joiningDate: "2026-02-02", salary: 35000, bankName: "", accountNumber: "", ifsc: "", pan: "", uan: "", status: "Left", ctc: "4.2 LPA" },
 ];
 
+// Real March 2026 attendance data from uploaded sheet
+const MARCH_2026_ATTENDANCE: Record<string, AttendanceRecord["status"][]> = {
+  // DURGADEVI.R → BC01: WO P P P L P P WO P P P P P WO WO P P P P P WO WO P P P P P P WO P P
+  "BC01": ["WO","P","P","P","L","P","P","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","P","WO","P","P"],
+  // SHWETHA.M → BC19: WO P P P P P P WO P L P P P WO WO P P P P P WO WO P P P P P P WO P P
+  "BC19": ["WO","P","P","P","P","P","P","WO","P","L","P","P","P","WO","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","P","WO","P","P"],
+  // ROSHNI.V → BC26: WO P P L P P P WO P P P P P WO WO P P P P P WO WO P P P P P P WO P P
+  "BC26": ["WO","P","P","L","P","P","P","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","P","WO","P","P"],
+  // SONA SIVAKUMAR → BC24: WO P P L P P P WO P P P P P WO WO P P P P P WO WO P P P P P P WO P P
+  "BC24": ["WO","P","P","L","P","P","P","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","P","WO","P","P"],
+  // VANI → BC20: WO P P P P P NA WO P P P P P WO WO P P P P P WO WO P P P P P NA WO P P
+  "BC20": ["WO","P","P","P","P","P","NA","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","WO","WO","P","P","P","P","P","NA","WO","P","P"],
+};
+
 export function generateAttendance(employeeId: string, year: number, month: number): AttendanceRecord[] {
+  // Use real data for March 2026 if available
+  if (year === 2026 && month === 2 && MARCH_2026_ATTENDANCE[employeeId]) {
+    const statuses = MARCH_2026_ATTENDANCE[employeeId];
+    return statuses.map((status, i) => {
+      const day = i + 1;
+      return {
+        id: `${employeeId}-${year}-${month}-${day}`,
+        employeeId,
+        date: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`,
+        status,
+      };
+    });
+  }
+
   const records: AttendanceRecord[] = [];
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
