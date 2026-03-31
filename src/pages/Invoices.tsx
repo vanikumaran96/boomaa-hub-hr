@@ -67,7 +67,7 @@ const Invoices = () => {
             <CardContent className="p-5 flex items-start justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Left</p>
-                <p className="text-3xl font-bold text-foreground mt-1">{leftCount}</p>
+                <p className="text-2xl font-bold text-foreground mt-1">{leftCount}</p>
               </div>
               <div className="p-2.5 rounded-lg bg-destructive/10">
                 <AlertCircle className="h-5 w-5 text-destructive" />
