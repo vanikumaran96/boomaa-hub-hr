@@ -56,7 +56,7 @@ const Invoices = () => {
             <CardContent className="p-5 flex items-start justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Active</p>
-                <p className="text-3xl font-bold text-foreground mt-1">{activeCount}</p>
+                <p className="text-2xl font-bold text-foreground mt-1">{activeCount}</p>
               </div>
               <div className="p-2.5 rounded-lg bg-primary/10">
                 <Users className="h-5 w-5 text-primary" />
