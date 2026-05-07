@@ -12,6 +12,7 @@ import { Plus, GripVertical, Mail, Briefcase, Building2, User } from "lucide-rea
 import { sampleCandidates, sampleClients, sampleEmployees, samplePlacements } from "@/data/sampleData";
 import type { Candidate, PlacementRecord } from "@/types/hr";
 import { useToast } from "@/hooks/use-toast";
+import { ResumeScreener } from "@/components/ResumeScreener";
 
 const STAGES = [
   { key: "sourced" as const, label: "Sourced", color: "bg-info/15 text-info border-info/20" },
@@ -119,6 +120,8 @@ const Recruitment = () => {
             </Card>
           ))}
         </div>
+
+        <ResumeScreener />
 
         <div className="flex justify-end">
           <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
