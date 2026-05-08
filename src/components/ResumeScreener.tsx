@@ -38,16 +38,57 @@ export const ResumeScreener = () => {
   const [result, setResult] = useState<ScreeningResult | null>(null);
   const [fileName, setFileName] = useState<string>("");
 
+  const extractPdfText = async (file: File): Promise<string> => {
+    const pdfjs: any = await import("pdfjs-dist");
+    // Use bundled worker via Vite ?url import
+    const workerSrc = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
+    pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjs.getDocument({ data: buf }).promise;
+    let text = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map((it: any) => it.str).join(" ") + "\n\n";
+    }
+    return text.trim();
+  };
+
+  const extractDocxText = async (file: File): Promise<string> => {
+    const mammoth: any = await import("mammoth/mammoth.browser");
+    const buf = await file.arrayBuffer();
+    const { value } = await mammoth.extractRawText({ arrayBuffer: buf });
+    return (value || "").trim();
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setFileName(file.name);
+    setLoading(true);
     try {
-      const text = await file.text();
+      const lower = file.name.toLowerCase();
+      let text = "";
+      if (lower.endsWith(".pdf")) {
+        text = await extractPdfText(file);
+      } else if (lower.endsWith(".docx")) {
+        text = await extractDocxText(file);
+      } else if (lower.endsWith(".doc")) {
+        toast({ title: "Legacy .doc not supported", description: "Please save as .docx or .pdf and re-upload.", variant: "destructive" });
+        return;
+      } else {
+        text = await file.text();
+      }
+      if (!text || text.length < 20) {
+        toast({ title: "Couldn't extract text", description: "The file appears to be empty or image-based. Try another file or paste text.", variant: "destructive" });
+        return;
+      }
       setResumeText(text);
-      toast({ title: "Resume loaded", description: `${file.name} (${Math.round(text.length / 1024)} KB text)` });
-    } catch {
-      toast({ title: "Could not read file", description: "Try a .txt file or paste the resume text below.", variant: "destructive" });
+      toast({ title: "Resume loaded", description: `${file.name} • ${text.length.toLocaleString()} chars extracted` });
+    } catch (err: any) {
+      toast({ title: "Could not read file", description: err?.message ?? "Try .pdf, .docx, or .txt.", variant: "destructive" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,13 +148,13 @@ export const ResumeScreener = () => {
               <Input
                 id="resume-file"
                 type="file"
-                accept=".txt,.md,.text"
+                accept=".pdf,.docx,.txt,.md"
                 onChange={handleFileUpload}
                 className="hidden"
               />
               <Button asChild variant="outline" size="sm">
                 <label htmlFor="resume-file" className="cursor-pointer">
-                  <Upload className="h-3 w-3 mr-1" /> Upload .txt
+                  <Upload className="h-3 w-3 mr-1" /> Upload PDF / DOCX / TXT
                 </label>
               </Button>
               {fileName && <span className="text-xs text-muted-foreground truncate">{fileName}</span>}
