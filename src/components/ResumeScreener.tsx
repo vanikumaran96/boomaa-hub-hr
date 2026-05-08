@@ -148,13 +148,13 @@ export const ResumeScreener = () => {
               <Input
                 id="resume-file"
                 type="file"
-                accept=".txt,.md,.text"
+                accept=".pdf,.docx,.txt,.md"
                 onChange={handleFileUpload}
                 className="hidden"
               />
               <Button asChild variant="outline" size="sm">
                 <label htmlFor="resume-file" className="cursor-pointer">
-                  <Upload className="h-3 w-3 mr-1" /> Upload .txt
+                  <Upload className="h-3 w-3 mr-1" /> Upload PDF / DOCX / TXT
                 </label>
               </Button>
               {fileName && <span className="text-xs text-muted-foreground truncate">{fileName}</span>}
