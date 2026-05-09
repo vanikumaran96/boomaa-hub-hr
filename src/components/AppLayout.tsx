@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { DemoMode } from "@/components/DemoMode";
 import { Building2 } from "lucide-react";
 
 interface AppLayoutProps {
@@ -36,6 +37,7 @@ export function AppLayout({ children, title }: AppLayoutProps) {
             {children}
           </main>
         </div>
+        <DemoMode />
       </div>
     </SidebarProvider>
   );
