@@ -121,7 +121,9 @@ const Recruitment = () => {
           ))}
         </div>
 
-        <ResumeScreener />
+        <div data-demo="screener">
+          <ResumeScreener />
+        </div>
 
         <div className="flex justify-end">
           <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
@@ -165,7 +167,7 @@ const Recruitment = () => {
         </div>
 
         {/* Kanban Board */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div data-demo="kanban" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {STAGES.map((stage) => {
             const stageCandidates = candidates.filter((c) => c.stage === stage.key);
             return (
