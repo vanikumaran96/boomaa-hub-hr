@@ -42,8 +42,9 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
 
-  const handleLogout = () => {
-    localStorage.removeItem("boomaa_user");
+  const handleLogout = async () => {
+    const { supabase } = await import("@/integrations/supabase/client");
+    await supabase.auth.signOut();
     navigate("/");
   };
 

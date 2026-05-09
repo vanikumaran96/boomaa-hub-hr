@@ -1,9 +1,10 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { DemoMode } from "@/components/DemoMode";
 import { Building2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -12,11 +13,23 @@ interface AppLayoutProps {
 
 export function AppLayout({ children, title }: AppLayoutProps) {
   const navigate = useNavigate();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("boomaa_user");
-    if (!user) navigate("/");
+    const { data: sub } = supabase.auth.onAuthStateChange((_evt, session) => {
+      if (!session) navigate("/");
+    });
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        navigate("/");
+      } else {
+        setReady(true);
+      }
+    });
+    return () => sub.subscription.unsubscribe();
   }, [navigate]);
+
+  if (!ready) return null;
 
   return (
     <SidebarProvider>
