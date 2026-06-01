@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -14,7 +13,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -22,24 +20,13 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: `${window.location.origin}/dashboard` },
-        });
-        if (error) throw error;
-        toast({ title: "Account created", description: "You can now sign in." });
-        setMode("signin");
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        toast({ title: "Welcome back!", description: "Signed in successfully." });
-        navigate("/dashboard");
-      }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      toast({ title: "Welcome back!", description: "Signed in successfully." });
+      navigate("/dashboard");
     } catch (err: any) {
       toast({
-        title: mode === "signup" ? "Sign up failed" : "Sign in failed",
+        title: "Sign in failed",
         description: err?.message ?? "Please try again.",
         variant: "destructive",
       });
@@ -61,18 +48,10 @@ const Login = () => {
 
         <Card className="shadow-card">
           <CardHeader className="pb-4">
-            <Tabs value={mode} onValueChange={(v) => setMode(v as "signin" | "signup")}>
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
-              </TabsList>
-              <TabsContent value="signin" className="mt-2">
-                <p className="text-sm text-muted-foreground">Enter your credentials to access the dashboard</p>
-              </TabsContent>
-              <TabsContent value="signup" className="mt-2">
-                <p className="text-sm text-muted-foreground">Create an account to access the system</p>
-              </TabsContent>
-            </Tabs>
+            <h2 className="text-lg font-semibold text-foreground">Sign In</h2>
+            <p className="text-sm text-muted-foreground">
+              Enter your credentials to access the dashboard. Accounts are provisioned by an administrator.
+            </p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -96,7 +75,7 @@ const Login = () => {
               </div>
 
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? (mode === "signup" ? "Creating account..." : "Signing in...") : (mode === "signup" ? "Create Account" : "Sign In")}
+                {loading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
           </CardContent>
@@ -107,3 +86,4 @@ const Login = () => {
 };
 
 export default Login;
+
