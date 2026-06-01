@@ -39,11 +39,39 @@ serve(async (req) => {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    if (resumeText.length > 50_000) {
+      return new Response(JSON.stringify({ error: "resumeText too long (max 50,000 chars)" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     if (!jobDescription || typeof jobDescription !== "string" || jobDescription.trim().length < 20) {
       return new Response(JSON.stringify({ error: "jobDescription is required (min 20 chars)" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    if (jobDescription.length > 10_000) {
+      return new Response(JSON.stringify({ error: "jobDescription too long (max 10,000 chars)" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (candidateName && (typeof candidateName !== "string" || candidateName.length > 200)) {
+      return new Response(JSON.stringify({ error: "candidateName too long (max 200 chars)" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (position && (typeof position !== "string" || position.length > 200)) {
+      return new Response(JSON.stringify({ error: "position too long (max 200 chars)" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Strip common prompt-injection markers from user-supplied text
+    const sanitize = (s: string) =>
+      s.replace(/^\s*(SYSTEM:|ASSISTANT:|USER:|###|---)\s*/gim, "[filtered] ");
+    const safeResume = sanitize(resumeText);
+    const safeJD = sanitize(jobDescription);
+    const safeName = candidateName ? sanitize(String(candidateName)) : "";
+    const safePosition = position ? sanitize(String(position)) : "";
 
     const systemPrompt = `You are an expert technical recruiter. Compare a candidate's resume against a job description and produce a structured match assessment. Be objective, specific, and concise. Score strictly: 90+ only for near-perfect fit, 70-89 strong fit, 50-69 partial fit, <50 weak fit.`;
 
