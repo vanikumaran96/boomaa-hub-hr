@@ -75,7 +75,7 @@ serve(async (req) => {
 
     const systemPrompt = `You are an expert technical recruiter. Compare a candidate's resume against a job description and produce a structured match assessment. Be objective, specific, and concise. Score strictly: 90+ only for near-perfect fit, 70-89 strong fit, 50-69 partial fit, <50 weak fit.`;
 
-    const userPrompt = `JOB DESCRIPTION${position ? ` (Position: ${position})` : ""}:\n${jobDescription}\n\nCANDIDATE RESUME${candidateName ? ` (Candidate: ${candidateName})` : ""}:\n${resumeText}\n\nAnalyze the fit and call the function with your assessment.`;
+    const userPrompt = `JOB DESCRIPTION${safePosition ? ` (Position: ${safePosition})` : ""}:\n${safeJD}\n\nCANDIDATE RESUME${safeName ? ` (Candidate: ${safeName})` : ""}:\n${safeResume}\n\nAnalyze the fit and call the function with your assessment.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
