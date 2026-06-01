@@ -78,6 +78,14 @@ const Login = () => {
                 {loading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
+
+            <div className="mt-6 rounded-lg border border-border bg-muted/40 p-3 text-xs">
+              <p className="font-semibold text-foreground mb-2">Demo credentials</p>
+              <div className="space-y-1 text-muted-foreground font-mono">
+                <div>Admin — admin@boomaa.com / Admin@123</div>
+                <div>Manager — manager@boomaa.com / Manager@123</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
