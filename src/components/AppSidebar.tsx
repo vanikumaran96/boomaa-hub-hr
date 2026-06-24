@@ -10,6 +10,7 @@ import {
   Building2,
   ChevronLeft,
   FileText,
+  PlaneTakeoff,
 } from "lucide-react";
 import {
   Sidebar,
@@ -34,6 +35,7 @@ const menuItems = [
   { title: "Recruitment", url: "/recruitment", icon: UserSearch },
   { title: "Clients", url: "/clients", icon: Briefcase },
   { title: "Invoices", url: "/invoices", icon: FileText },
+  { title: "Leaves", url: "/leaves", icon: PlaneTakeoff },
 ];
 
 export function AppSidebar() {
